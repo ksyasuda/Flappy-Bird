@@ -5,8 +5,11 @@ function setup() {
     background(220);
     frameRate(30);
 	// createCanvas(450, 570);
+	color(BACKGROUND);
 	createCanvas(800, 570);
-	bird = new Bird(440, 100, img);
+	// createCanvas(windowWidth-10, windowHeight-2);
+	// bird = new Bird(440, 100, img);
+	bird = new Bird(40, 100, img);
 	let fs = fullscreen();
 	fullscreen(!fs);
 }
@@ -38,7 +41,8 @@ function preload() {
 let score = 0;
 let need_check = true;
 function genPipes() {
-	let x = 850, y = 0;	
+	// let x = 850, y = 0;	
+	let x = 450, y = 0;
 	let h = random(50, 375);
 	if(!bird.dead) {
 		let temp = new Pipe(imgtop, x, y, 60, h);
@@ -95,7 +99,7 @@ function showScore(score) {
 		tempx = 30;
 		score = "STOP PLS";
 	}
-	tempx += 380;
+	// tempx += 380;
 	text("Score: ", tempx, tempy);
 	text(score, tempx+150, tempy+2);
 }
@@ -130,7 +134,8 @@ let BACKGROUND = 220;
 function youLose() {
 	// text("YOU LOSE LOL \n#CHARLIE", -200, 0);
 	fill(255, 0, 0);
-	text("GAVE OVER, \nCHARLIE!", 445, 250);
+	// text("GAVE OVER, \nCHARLIE!", 445, 250);
+	text("GAME OVER \nCHARLIE", 80, 250);
 }
 
 function ground() {
@@ -147,7 +152,8 @@ function startGame() {
 }
 
 function redraw() {
-	image(backgroundd, 400, 0, 450, 570);
+	// image(backgroundd, 400, 0, 450, 570);
+	image(backgroundd, 0, 0, 450, windowHeight);
 }
 
 function reset() {
@@ -155,27 +161,36 @@ function reset() {
 	pv[1].x += 1000;
 	redraw();
 	delete bird;
-	bird = new Bird(440, 100, img);
+	// bird = new Bird(440, 100, img);
+	bird = new Bird(40, 100, img);
 	bird.dead = false;
 	score = 0;
 	loop();
 	startGame();
 }
 
+function bar() {
+	fill(255, 255, 255);
+	// fill(255, 0, 0);
+	rect(450, 0, 60, windowHeight);
+}
+
 function draw() {
 	noStroke();
 	// background(BACKGROUND);
-	image(backgroundd, 400, 0, 450, 570);
+	// image(backgroundd, 400, 0, 450, 570);
+	image(backgroundd, 0, 0, 450, windowHeight);
 	// fill(0);
 	// ground();
 	// fill(124, 252, 0);
 	startGame();	
+	bar();
 	// genPipes();
 	// bird.show();
 	// bird.update();
 	// showScore(score);
-	fill(255, 255, 255);
-	rect(330, 0, 70, 800);
+	// fill(255, 255, 255);
+	// rect(330, 0, 70, 800);
 	// pipe();
 	if(bird.dead) {
 		// console.log("DEAD");
