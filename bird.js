@@ -21,7 +21,7 @@ class Bird {
 	}
 
 	show() {
-		image(this.img, this.x, this.y, width/17, height/17);
+		image(this.img, this.x, this.y, width/24, height/24); //KOBE
 		this.flying = false;
 	}
 

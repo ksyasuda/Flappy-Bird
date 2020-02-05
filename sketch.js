@@ -6,7 +6,7 @@ function setup() {
     frameRate(30);
 	// createCanvas(450, 570);
 	color(BACKGROUND);
-	createCanvas(800, 570);
+	createCanvas(800, 1080);
 	// createCanvas(windowWidth-10, windowHeight-2);
 	// bird = new Bird(440, 100, img);
 	bird = new Bird(40, 100, img);
@@ -37,15 +37,16 @@ function preload() {
 //     x -= 3
 //     x2 -= 3;
 // }
-
+let balance = false;
 let score = 0;
 let need_check = true;
 function genPipes() {
 	// let x = 850, y = 0;	
 	let x = 450, y = 0;
-	let h = random(50, 375);
+	let h = floor(random(50, 375));
 	if(!bird.dead) {
 		let temp = new Pipe(imgtop, x, y, 60, h);
+		if(h < 85) y += 20;
 		let temp2 = new Pipe(img2, x, y+(h+95), 58, h+400);
 		pv.push(temp);
 		pv.push(temp2);
@@ -61,7 +62,7 @@ function genPipes() {
 		// 	bird.dead = true;
 		// }
 		if(bird.x+34 >= pv[0].x && bird.x+34 <= pv[0].x+pv[0].w+15 && bird.y <= pv[0].h ||
-		   bird.x+34 >= pv[1].x && bird.x+34 <= pv[1].x+pv[1].w+20 && bird.y >= pv[0].h+goal.h) {
+		   bird.x+34 >= pv[1].x && bird.x+34 <= pv[1].x+pv[1].w+20 && bird.y+30 >= pv[0].h+goal.h) {
 				bird.dead = true;
 		}
 		else if(((bird.x >= goal.x && bird.x <= goal.x + goal.w) && (bird.y >= goal.y && bird.y <= goal.y + goal.h)) && need_check) {
