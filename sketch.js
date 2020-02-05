@@ -181,6 +181,11 @@ function touchMoved() {
 	return false;
 }
 
+function bottomBar() {
+	fill(255, 255, 255);
+	rect(0, 577, windowWidth, 1000);
+}
+
 function draw() {
 	noStroke();
 	// background(BACKGROUND);
@@ -191,6 +196,7 @@ function draw() {
 	// fill(124, 252, 0);
 	startGame();	
 	bar();
+	bottomBar();
 	// genPipes();
 	// bird.show();
 	// bird.update();
@@ -204,6 +210,7 @@ function draw() {
 		fill(124, 252, 0);
 		pv[0].show();
 		pv[1].show();
+		bottomBar();
 		youLose();
 		//? javascript function to wait 3000ms (3 seoncds) until it calls noLoop() so bird can fall
 		setTimeout(function() {
