@@ -10,8 +10,8 @@ function setup() {
 	// createCanvas(windowWidth-10, windowHeight-2);
 	// bird = new Bird(440, 100, img);
 	bird = new Bird(40, 100, img);
-	let fs = fullscreen();
-	fullscreen(!fs);
+	// let fs = fullscreen();
+	// fullscreen(!fs);
 }
 
 
