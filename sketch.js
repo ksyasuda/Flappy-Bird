@@ -17,6 +17,7 @@ function setup() {
 
 let img, img2, imgtop, backgroundd;
 let font;
+let gif, mlg;
 
 function preload() {
 	// img = loadImage('images/yawnick.png');
@@ -24,6 +25,11 @@ function preload() {
 	imgtop = loadImage('https://i.imgur.com/xV9C0qd.png');
 	img2 = loadImage('https://i.imgur.com/vzybP1t.png');
 	backgroundd = loadImage('https://i.imgur.com/Iw7hroH.png');
+	gif = createImg('https://media.giphy.com/media/yXVO50FJIJMSQ/giphy.gif');
+	gif.position(640, 125);
+	gif.hide();
+	mlg = createImg('https://media.giphy.com/media/jQ9mAVH5VXwty/giphy.gif');
+	mlg.hide();
 	// font = loadFont('');
 	// font = loadFont('fonts/consola.ttf');
 	// loadFont('/mnt/c/Users/kyley/OneDrive/consola.ttf');
@@ -136,7 +142,11 @@ function youLose() {
 	// text("YOU LOSE LOL \n#CHARLIE", -200, 0);
 	fill(255, 0, 0);
 	// text("GAVE OVER, \nCHARLIE!", 445, 250);
-	text("GAME OVER \nCHARLIE", 80, 250);
+	if(charlie) {
+		text("Gamer Over", 85, 115);
+		text("Charlie!", 135, 180);
+	}
+	else text("Game Over", 85, 175);
 }
 
 function ground() {
@@ -166,6 +176,8 @@ function reset() {
 	bird = new Bird(40, 100, img);
 	bird.dead = false;
 	score = 0;
+	gif.show();
+	mlg.hide();
 	loop();
 	startGame();
 }
@@ -186,6 +198,8 @@ function bottomBar() {
 	rect(0, 577, windowWidth, 1000);
 }
 
+let charlie = true;
+
 function draw() {
 	noStroke();
 	// background(BACKGROUND);
@@ -201,15 +215,23 @@ function draw() {
 	// bird.show();
 	// bird.update();
 	// showScore(score);
-	// fill(255, 255, 255);
-	// rect(330, 0, 70, 800);
+	fill(255, 255, 255);
+	rect(449, 0, 70, 800);
 	// pipe();
+	if(charlie){ gif.show(); }
 	if(bird.dead) {
 		// console.log("DEAD");
-		bird.heDead();
+		if(charlie) {
+			gif.hide();
+			mlg.position(59, 200);
+			mlg.show();
+		}
 		fill(124, 252, 0);
+		bird.heDead();
 		pv[0].show();
 		pv[1].show();
+		fill(255, 255, 255);
+		rect(449, 0, 70, 800);
 		bottomBar();
 		youLose();
 		//? javascript function to wait 3000ms (3 seoncds) until it calls noLoop() so bird can fall
