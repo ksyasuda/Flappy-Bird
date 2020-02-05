@@ -177,6 +177,7 @@ function bar() {
 
 function touchMoved() {
 	reset();
+	return false;
 }
 
 function draw() {
@@ -189,7 +190,6 @@ function draw() {
 	// fill(124, 252, 0);
 	startGame();	
 	bar();
-	let touches = touches.length;
 	// genPipes();
 	// bird.show();
 	// bird.update();
