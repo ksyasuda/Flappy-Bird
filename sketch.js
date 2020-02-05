@@ -185,6 +185,8 @@ function draw() {
 	// fill(124, 252, 0);
 	startGame();	
 	bar();
+	let touches = touches.length;
+	if(touches.length >= 3) reset();
 	// genPipes();
 	// bird.show();
 	// bird.update();
