@@ -175,6 +175,10 @@ function bar() {
 	rect(450, 0, 60, windowHeight);
 }
 
+function touchMoved() {
+	reset();
+}
+
 function draw() {
 	noStroke();
 	// background(BACKGROUND);
@@ -186,7 +190,6 @@ function draw() {
 	startGame();	
 	bar();
 	let touches = touches.length;
-	if(touches.length >= 3) reset();
 	// genPipes();
 	// bird.show();
 	// bird.update();
