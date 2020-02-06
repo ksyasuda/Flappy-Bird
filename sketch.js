@@ -129,13 +129,6 @@ function keyPressed() {
 	return false;
 }
 
-function touchStarted() {
-	if(!bird.dead) {
-		bird.fly();
-	}
-	return false;
-}
-
 let BACKGROUND = 220;
 
 function youLose() {
@@ -201,6 +194,7 @@ let end = {x:0, y:0};
 let touch = {begin, end};
 
 function touchStarted() {
+	if(!bird.dead) bird.fly();
 	touch.begin.x = mouseX;
 	touch.begin.y = mouseY;
 	return false;
@@ -209,7 +203,7 @@ function touchStarted() {
 function touchEnded() {
 	touch.end.x = mouseX;
 	touch.end.y = mouseY;
-	if(touch.end.y < touch.begin.y && Math.abs(touch.begin.x - touch.end.x) <= 70) reset();
+	if(touch.end.y < touch.begin.y && Math.abs(touch.begin.x - touch.end.x) <= 10) reset();
 	return false;
 }
 
