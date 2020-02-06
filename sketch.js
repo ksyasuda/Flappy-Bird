@@ -198,7 +198,7 @@ function bottomBar() {
 	rect(0, 577, windowWidth, 1000);
 }
 
-let charlie = true;
+let charlie = false;
 
 function draw() {
 	noStroke();
