@@ -203,7 +203,7 @@ function touchStarted() {
 function touchEnded() {
 	touch.end.x = mouseX;
 	touch.end.y = mouseY;
-	if(touch.end.y < touch.begin.y && Math.abs(touch.begin.x - touch.end.x) <= 10) reset();
+	if(touch.end.y < touch.begin.y && Math.abs(touch.begin.x - touch.end.x) <= 100) reset();
 	return false;
 }
 
