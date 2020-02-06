@@ -7,7 +7,7 @@ function setup() {
     frameRate(30);
 	// createCanvas(450, 570);
 	color(BACKGROUND);
-	createCanvas(800, 1080);
+	createCanvas(800, windowHeight);
 	// createCanvas(windowWidth-10, windowHeight-2);
 	// bird = new Bird(440, 100, img);
 	// bird = new Bird(40, windowHeight/3, img);
@@ -32,7 +32,7 @@ let gif, mlg;
 
 function preload() {
 	// img = loadImage('images/yawnick.png');
-	img = loadImage('https://i.imgur.com/RcdN7kv.png');
+	img = loadImage('https://i.imgur.com/Z5gsvRV.png');
 	imgtop = loadImage('https://i.imgur.com/xV9C0qd.png');
 	img2 = loadImage('https://i.imgur.com/vzybP1t.png');
 	backgroundd = loadImage('https://i.imgur.com/Iw7hroH.png');
