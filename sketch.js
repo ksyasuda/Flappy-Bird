@@ -162,7 +162,7 @@ function startGame() {
 	showScore(score);
 }
 
-function redraw() {
+function redraww() {
 	// image(backgroundd, 400, 0, 450, 570);
 	image(backgroundd, 0, 0, 450, windowHeight);
 }
@@ -170,14 +170,16 @@ function redraw() {
 function reset() {
 	pv[0].x += 1000;
 	pv[1].x += 1000;
-	redraw();
+	redraww();
 	delete bird;
 	// bird = new Bird(440, 100, img);
 	bird = new Bird(40, 100, img);
 	bird.dead = false;
 	score = 0;
-	gif.show();
-	mlg.hide();
+	if (charlie) {
+		gif.show();
+		mlg.hide();
+	}
 	loop();
 	startGame();
 }
@@ -188,8 +190,26 @@ function bar() {
 	rect(450, 0, 60, windowHeight);
 }
 
-function touchMoved() {
-	reset();
+// function touchMoved() {
+// 	reset();
+// 	return false;
+// }
+
+
+let begin = {x:0, y:0};
+let end = {x:0, y:0};
+let touch = {begin, end};
+
+function touchStarted() {
+	touch.begin.x = mouseX;
+	touch.begin.y = mouseY;
+	return false;
+}
+
+function touchEnded() {
+	touch.end.x = mouseX;
+	touch.end.y = mouseY;
+	if(touch.end.y < touch.begin.y && Math.abs(touch.begin.x - touch.end.x) <= 70) reset();
 	return false;
 }
 
@@ -198,7 +218,7 @@ function bottomBar() {
 	rect(0, 577, windowWidth, 1000);
 }
 
-let charlie = false;
+let charlie = true;
 
 function draw() {
 	noStroke();
