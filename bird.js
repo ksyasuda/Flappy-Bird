@@ -3,30 +3,32 @@ class Bird {
 		this.x = x;
 		this.y = y;
 		this.img = img;
-		this.yspeed = 5.5;
-		this.flap = 50;
+		this.gravity = .75;
+		this.flap = -11;
 		this.dead = false;
 		this.rounds_alive = 0;
-		this.flying = false;
+		this.velocity = 0;
 	}
 
 	update() {
-		this.y += this.yspeed;
+		this.velocity += this.gravity;
+		if(this.velocity < -10) this.velocity = -10;
+		this.y += this.velocity;
+		//this.y += this.yspeed;
 	}
 
 	fly() {
-		this.flying = true;
-		this.y -= this.flap;
+		this.velocity += this.flap;
+		console.log(this.velocity);
 		// console.log(this.y);
 	}
 
 	show() {
 		image(this.img, this.x, this.y, width/24, height/24); //KOBE
-		this.flying = false;
 	}
 
 	heDead() {
-		this.y += 6;
+		this.y += 11;
 	}
 
 	anothaOne() {

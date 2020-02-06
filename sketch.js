@@ -81,7 +81,7 @@ function genPipes() {
 			// textSize(50);
 			// text(score, 20, 200);
 		}
-		if(frameCount % (30*5.5) === 0) {
+		if(frameCount % (30*4) === 0) {
 			delete pv[0]; 
 			delete pv[1];
 			pv.shift(); 
@@ -203,7 +203,7 @@ function touchStarted() {
 function touchEnded() {
 	touch.end.x = mouseX;
 	touch.end.y = mouseY;
-	if(touch.end.y < touch.begin.y && Math.abs(touch.begin.x - touch.end.x) <= 100) reset();
+	if(touch.end.y < touch.begin.y && Math.abs(touch.end.y-touch.begin.y) > 200 && Math.abs(touch.begin.x - touch.end.x) <= 80) reset();
 	return false;
 }
 
