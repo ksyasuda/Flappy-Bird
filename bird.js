@@ -3,8 +3,8 @@ class Bird {
 		this.x = x;
 		this.y = y;
 		this.img = img;
-		this.gravity = .75;
-		this.flap = -11;
+		this.gravity = 1.7;
+		this.flap = -22;
 		this.dead = false;
 		this.rounds_alive = 0;
 		this.velocity = 0;
@@ -12,7 +12,8 @@ class Bird {
 
 	update() {
 		this.velocity += this.gravity;
-		if(this.velocity < -10) this.velocity = -10;
+		if(this.velocity < -12) this.velocity = -12;
+		else if(this.velocity > 25) this.velcity = 25;
 		this.y += this.velocity;
 		//this.y += this.yspeed;
 	}

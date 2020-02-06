@@ -1,5 +1,6 @@
 let bird, pipe;
 let pv = [];
+let start = false;
 
 function setup() {
     background(220);
@@ -9,7 +10,8 @@ function setup() {
 	createCanvas(800, 1080);
 	// createCanvas(windowWidth-10, windowHeight-2);
 	// bird = new Bird(440, 100, img);
-	bird = new Bird(40, 100, img);
+	bird = new Bird(40, windowHeight/3, img);
+	color(0, 0, 255);
 	// let fs = fullscreen();
 	// fullscreen(!fs);
 }
@@ -67,8 +69,8 @@ function genPipes() {
 		// 	((bird.x >= pv[1].x && bird.x <= pv[1].x+55 && bird.y >= goal.y+100))) {
 		// 	bird.dead = true;
 		// }
-		if(bird.x+34 >= pv[0].x && bird.x+34 <= pv[0].x+pv[0].w+15 && bird.y <= pv[0].h ||
-		   bird.x+34 >= pv[1].x && bird.x+34 <= pv[1].x+pv[1].w+20 && bird.y+30 >= pv[0].h+goal.h) {
+		if(bird.x+32 >= pv[0].x && bird.x+32 <= pv[0].x+pv[0].w+15 && bird.y+5 <= pv[0].h ||
+		   bird.x+32 >= pv[1].x && bird.x+32 <= pv[1].x+pv[1].w+20 && bird.y+30 >= pv[0].h+goal.h) {
 				bird.dead = true;
 		}
 		else if(((bird.x >= goal.x && bird.x <= goal.x + goal.w) && (bird.y >= goal.y && bird.y <= goal.y + goal.h)) && need_check) {
@@ -118,6 +120,7 @@ let grav = 0;
 // }
 
 function keyPressed() {
+	if(!start) start = true;
 	if(keyCode === 32 && !bird.dead) {
 		bird.fly();
 	}
@@ -161,6 +164,7 @@ function redraww() {
 }
 
 function reset() {
+	start = false;
 	pv[0].x += 1000;
 	pv[1].x += 1000;
 	redraww();
@@ -194,6 +198,7 @@ let end = {x:0, y:0};
 let touch = {begin, end};
 
 function touchStarted() {
+	if(!start) start = true;
 	if(!bird.dead) bird.fly();
 	touch.begin.x = mouseX;
 	touch.begin.y = mouseY;
@@ -222,7 +227,13 @@ function draw() {
 	// fill(0);
 	// ground();
 	// fill(124, 252, 0);
-	startGame();	
+	if(start) startGame();
+	else {
+		fill(0, 0, 255);
+		textSize(40);
+		text("Press any key", 90, 200);
+		text("Or touch to start", 70, 245);
+	}
 	bar();
 	bottomBar();
 	// genPipes();
