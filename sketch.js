@@ -10,10 +10,19 @@ function setup() {
 	createCanvas(800, 1080);
 	// createCanvas(windowWidth-10, windowHeight-2);
 	// bird = new Bird(440, 100, img);
-	bird = new Bird(40, windowHeight/3, img);
+	// bird = new Bird(40, windowHeight/3, img);
 	color(0, 0, 255);
+	startt();
 	// let fs = fullscreen();
 	// fullscreen(!fs);
+}
+
+function startt() {
+	createCanvas(800, 1080);
+	// createCanvas(windowWidth-10, windowHeight-2);
+	// bird = new Bird(440, 100, img);
+	bird = new Bird(40, windowHeight/3, img);
+	color(0, 0, 255);
 }
 
 
@@ -70,7 +79,7 @@ function genPipes() {
 		// 	bird.dead = true;
 		// }
 		if(bird.x+32 >= pv[0].x && bird.x+32 <= pv[0].x+pv[0].w+15 && bird.y+5 <= pv[0].h ||
-		   bird.x+32 >= pv[1].x && bird.x+32 <= pv[1].x+pv[1].w+20 && bird.y+30 >= pv[0].h+goal.h) {
+		   bird.x+32 >= pv[1].x && bird.x+32 <= pv[1].x+pv[1].w+20 && bird.y+32 >= pv[0].h+goal.h) {
 				bird.dead = true;
 		}
 		else if(((bird.x >= goal.x && bird.x <= goal.x + goal.w) && (bird.y >= goal.y && bird.y <= goal.y + goal.h)) && need_check) {
@@ -167,10 +176,10 @@ function reset() {
 	start = false;
 	pv[0].x += 1000;
 	pv[1].x += 1000;
-	redraww();
+	// redraww();
 	delete bird;
-	// bird = new Bird(440, 100, img);
-	bird = new Bird(40, 100, img);
+	// // bird = new Bird(440, 100, img);
+	// bird = new Bird(40, 100, img);
 	bird.dead = false;
 	score = 0;
 	if (charlie) {
@@ -178,7 +187,8 @@ function reset() {
 		mlg.hide();
 	}
 	loop();
-	startGame();
+	// startGame();
+	startt(); //* redraw everything and restart program
 }
 
 function bar() {
@@ -263,6 +273,6 @@ function draw() {
 		setTimeout(function() {
 			noLoop();
 			// console.log("NICE YOU LOST");
-		}, 3000);
+		}, 1000);
 	}
 }
