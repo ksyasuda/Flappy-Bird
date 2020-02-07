@@ -106,12 +106,6 @@ function genPipes() {
 			}
 			
 		}
-		else if(needScale) {
-			if(bird.x >= pv[0].x && bird.x <= pv[0].x+pv[0].w+15 && bird.y + 80 <= pv[0].h ||
-			bird.x >= pv[1].x && bird.x <= pv[1].x+pv[1].w+15 && bird.y-80 >= pv[0].h+goal.h) {
-					bird.dead = true;
-			}
-		}
 		if(((bird.x >= goal.x && bird.x <= goal.x + goal.w) && (bird.y >= goal.y && bird.y <= goal.y + goal.h)) && need_check) {
 				bird.anothaOne();
 				score = bird.rounds_alive;
@@ -257,7 +251,7 @@ function touchStarted() {
 		start = true;
 		// let fs = fullscreen();
 		// if(!fs) fullscreen(true);
-		bird.scalee();
+		// bird.scalee();
 		// start = true; 
 	}
 	if(!bird.dead) bird.fly();

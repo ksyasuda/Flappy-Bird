@@ -27,15 +27,17 @@ class Bird {
 
 	scalee() {
 		this.scale = true;
-		this.gravity = 1.02;
-		this.flap = -12.5;
+		// this.gravity = 1.02;
+		// this.flap = -12.5;
 	}
 
 	show() {
+		let w = width;
+		let h = height;
 		if(this.scale) {
-			scale(1.6);
+			image(this.img, this.x, this.y, w/10, h/10);
 		}
-		image(this.img, this.x, this.y, width/21, height/21); 
+		else image(this.img, this.x, this.y, w/21, h/21); 
 	}
 
 	heDead() {
