@@ -99,20 +99,29 @@ function genPipes() {
 		// 	((bird.x >= pv[1].x && bird.x <= pv[1].x+55 && bird.y >= goal.y+100))) {
 		// 	bird.dead = true;
 		// }
-		if(bird.x+32 >= pv[0].x && bird.x+32 <= pv[0].x+pv[0].w+15 && bird.y+4 <= pv[0].h ||
-		   bird.x+32 >= pv[1].x && bird.x+32 <= pv[1].x+pv[1].w+20 && bird.y >= pv[0].h+goal.h) {
-				bird.dead = true;
+		if(!needScale) {
+			if(bird.x+32 >= pv[0].x && bird.x+32 <= pv[0].x+pv[0].w+15 && bird.y+4 <= pv[0].h ||
+			bird.x+32 >= pv[1].x && bird.x+32 <= pv[1].x+pv[1].w+20 && bird.y >= pv[0].h+goal.h) {
+					bird.dead = true;
+			}
+			
 		}
-		else if(((bird.x >= goal.x && bird.x <= goal.x + goal.w) && (bird.y >= goal.y && bird.y <= goal.y + goal.h)) && need_check) {
-			bird.anothaOne();
-			score = bird.rounds_alive;
-			need_check = false;
-			// setTimeout()
-			// fill(255, 0, 0);
-			// textFont(font);
-			// textSize(50);
-			// text(score, 20, 200);
+		else if(needScale) {
+			if(bird.x >= pv[0].x && bird.x <= pv[0].x+pv[0].w+15 && bird.y + 30 <= pv[0].h ||
+			bird.x >= pv[1].x && bird.x <= pv[1].x+pv[1].w+15 && bird.y-30 >= pv[0].h+goal.h) {
+					bird.dead = true;
+			}
 		}
+		if(((bird.x >= goal.x && bird.x <= goal.x + goal.w) && (bird.y >= goal.y && bird.y <= goal.y + goal.h)) && need_check) {
+				bird.anothaOne();
+				score = bird.rounds_alive;
+				need_check = false;
+				// setTimeout()
+				// fill(255, 0, 0);
+				// textFont(font);
+				// textSize(50);
+				// text(score, 20, 200);
+			}
 		if(frameCount % (30*4) === 0) {
 			delete pv[0]; 
 			delete pv[1];
