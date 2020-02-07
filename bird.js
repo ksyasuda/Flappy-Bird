@@ -41,7 +41,7 @@ class Bird {
 	}
 
 	heDead() {
-		this.y += 30;
+		this.y += 55;
 	}
 
 	anothaOne() {
