@@ -107,8 +107,8 @@ function genPipes() {
 			
 		}
 		else if(needScale) {
-			if(bird.x >= pv[0].x && bird.x <= pv[0].x+pv[0].w+15 && bird.y + 50 <= pv[0].h ||
-			bird.x >= pv[1].x && bird.x <= pv[1].x+pv[1].w+15 && bird.y-50 >= pv[0].h+goal.h) {
+			if(bird.x >= pv[0].x && bird.x <= pv[0].x+pv[0].w+15 && bird.y + 80 <= pv[0].h ||
+			bird.x >= pv[1].x && bird.x <= pv[1].x+pv[1].w+15 && bird.y-80 >= pv[0].h+goal.h) {
 					bird.dead = true;
 			}
 		}
