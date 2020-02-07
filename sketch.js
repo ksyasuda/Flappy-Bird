@@ -236,8 +236,8 @@ let touch = {begin, end};
 function touchStarted() {
 	if(!start) { 
 		start = true;
-		let fs = fullscreen();
-		if(!fs) fullscreen(true);
+		// let fs = fullscreen();
+		// if(!fs) fullscreen(true);
 		bird.scalee();
 		// start = true; 
 	}
