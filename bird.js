@@ -27,6 +27,7 @@ class Bird {
 
 	scalee() {
 		this.scale = true;
+		this.flap = -14.4;
 	}
 
 	show() {

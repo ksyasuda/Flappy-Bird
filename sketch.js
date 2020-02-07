@@ -1,6 +1,7 @@
 let bird, pipe;
 let pv = [];
 let start = false;
+let needScale = false;
 
 function setup() {	
     background(220);
@@ -138,6 +139,7 @@ function showScore(score) {
 		score = "STOP PLS";
 	}
 	// tempx += 380;
+	if(needScale) tempx -= 100;
 	text("Score: ", tempx, tempy);
 	text(score, tempx+150, tempy+2);
 }
@@ -172,10 +174,17 @@ function youLose() {
 	fill(255, 0, 0);
 	// text("GAVE OVER, \nCHARLIE!", 445, 250);
 	if(charlie) {
-		text("Gamer Over", 85, 115);
-		text("Charlie!", 135, 180);
+		if(needScale) {
+			text("Gamer Over", 5, 115);
+			text("Charlie!", 55, 180);
+		}
+		else {
+			text("Gamer Over", 85, 115);
+			text("Charlie!", 135, 180);
+		}
 	}
-	else text("Game Over", 85, 175);
+	else if(!needScale) text("Game Over", 85, 175);
+	else if(needScale) text("Game Over", 5, 175);
 }
 
 function ground() {
@@ -235,6 +244,7 @@ let touch = {begin, end};
 
 function touchStarted() {
 	if(!start) { 
+		needScale = true;
 		start = true;
 		// let fs = fullscreen();
 		// if(!fs) fullscreen(true);
@@ -296,13 +306,15 @@ function draw() {
 	if(bird.dead) {
 		if(charlie) {
 			gif.hide();
-			mlg.position(59, 200);
+			if(needScale) mlg.position(59, 300);
+			else mlg.position(59, 200);
 			mlg.show();
 		}
 		fill(124, 252, 0);
 		bird.heDead();
 		pv[0].show();
 		pv[1].show();
+		showScore();
 		// fill(255, 255, 255);
 		// rect(449, 0, 70, 800);
 		// bottomBar();
