@@ -2,23 +2,37 @@ let bird, pipe;
 let pv = [];
 let start = false;
 
-function setup() {
+function setup() {	
     background(220);
     frameRate(30);
-	// createCanvas(450, 570);
-	color(BACKGROUND);
-	createCanvas(800, windowHeight);
+	createCanvas(windowWidth+80, windowHeight+80);
+	genBird();
+	// let fs = fullscreen();
+	// if(!fs) {
+	// 	console.log("Fullscreen");
+	// 	fullscreen(true);
+	// }
 	// createCanvas(windowWidth-10, windowHeight-2);
-	// bird = new Bird(440, 100, img);
 	// bird = new Bird(40, windowHeight/3, img);
 	color(0, 0, 255);
-	startt();
-	// let fs = fullscreen();
-	// fullscreen(!fs);
+	// startt();
 }
 
-function startt() {
-	createCanvas(800, 1080);
+function checkforInput() {
+	// fill(0, 0, 255);
+	textSize(40);
+	text("Press any key", 90, 200);
+	text("Or touch to start", 70, 245);
+}
+
+function windowResized() {
+	resizeCanvas(windowWidth+80, windowHeight+80);
+	gifpos.x = 635;
+	gifpos.y = windowHeight/5.5;
+}
+
+function genBird() {
+	// createCanvas(800, 1080);
 	// createCanvas(windowWidth-10, windowHeight-2);
 	// bird = new Bird(440, 100, img);
 	bird = new Bird(40, windowHeight/3, img);
@@ -29,15 +43,19 @@ function startt() {
 let img, img2, imgtop, backgroundd;
 let font;
 let gif, mlg;
+let gifpos = {x:0, x:0};
 
 function preload() {
+	
 	// img = loadImage('images/yawnick.png');
 	img = loadImage('https://i.imgur.com/Z5gsvRV.png');
 	imgtop = loadImage('https://i.imgur.com/xV9C0qd.png');
 	img2 = loadImage('https://i.imgur.com/vzybP1t.png');
 	backgroundd = loadImage('https://i.imgur.com/Iw7hroH.png');
 	gif = createImg('https://media.giphy.com/media/yXVO50FJIJMSQ/giphy.gif');
-	gif.position(640, 125);
+	gifpos.x = 635;
+	gifpos.y = windowHeight/5.5;
+	gif.position(gifpos.x, gifpos.y);
 	gif.hide();
 	mlg = createImg('https://media.giphy.com/media/jQ9mAVH5VXwty/giphy.gif');
 	mlg.hide();
@@ -62,9 +80,9 @@ function genPipes() {
 	let x = 450, y = 0;
 	let h = floor(random(50, 375));
 	if(!bird.dead) {
-		let temp = new Pipe(imgtop, x, y, 60, h);
+		let temp = new Pipe(imgtop, x, y, 63, h);
 		if(h < 85) y += 20;
-		let temp2 = new Pipe(img2, x, y+(h+95), 58, h+400);
+		let temp2 = new Pipe(img2, x, y+(h+95), 61, h+400);
 		pv.push(temp);
 		pv.push(temp2);
 		pv[0].show();
@@ -113,7 +131,7 @@ function showScore(score) {
 	if(score > 99) {
 		tempx = 95;
 	}
-	if(score > 999) {
+	if(score >= 1000) {
 		tempx = 30;
 		score = "STOP PLS";
 	}
@@ -129,7 +147,11 @@ let grav = 0;
 // }
 
 function keyPressed() {
-	if(!start) start = true;
+	if(!start) {
+		let fs = fullscreen();
+		if(!fs) fullscreen(true);
+		start = true; 
+	}
 	if(keyCode === 32 && !bird.dead) {
 		bird.fly();
 	}
@@ -161,6 +183,7 @@ function ground() {
 
 function startGame() {
 	fill(124, 252, 0);	
+	// genBird();
 	genPipes();
 	bird.show();
 	bird.update();
@@ -188,7 +211,7 @@ function reset() {
 	}
 	loop();
 	// startGame();
-	startt(); //* redraw everything and restart program
+	genBird(); //* redraw everything and restart program
 }
 
 function bar() {
@@ -208,7 +231,11 @@ let end = {x:0, y:0};
 let touch = {begin, end};
 
 function touchStarted() {
-	if(!start) start = true;
+	if(!start) { 
+		let fs = fullscreen();
+		if(!fs) fullscreen(true);
+		start = true; 
+	}
 	if(!bird.dead) bird.fly();
 	touch.begin.x = mouseX;
 	touch.begin.y = mouseY;
@@ -218,12 +245,19 @@ function touchStarted() {
 function touchEnded() {
 	touch.end.x = mouseX;
 	touch.end.y = mouseY;
-	if(touch.end.y < touch.begin.y && Math.abs(touch.end.y-touch.begin.y) > 200 && Math.abs(touch.begin.x - touch.end.x) <= 80) reset();
+	if(touch.end.y < touch.begin.y && Math.abs(touch.end.y-touch.begin.y) > 100 && Math.abs(touch.begin.x - touch.end.x) <= 80) reset();
 	return false;
 }
 
+function darkMode() {
+	fill(40, 44, 53);
+	rect(450, 0, windowWidth+120, windowHeight+120);
+	rect(0, windowHeight, windowWidth+120, 100);
+}
+
 function bottomBar() {
-	fill(255, 255, 255);
+	// fill(255, 255, 255);
+	fill(0);
 	rect(0, 577, windowWidth, 1000);
 }
 
@@ -231,31 +265,28 @@ let charlie = true;
 
 function draw() {
 	noStroke();
+	fill(40, 44, 53);
+	rect(0, 0, windowWidth+30, windowHeight+30);
 	// background(BACKGROUND);
 	// image(backgroundd, 400, 0, 450, 570);
 	image(backgroundd, 0, 0, 450, windowHeight);
+	if(!start) {
+		checkforInput();
+	} 
+	else startGame();
 	// fill(0);
 	// ground();
 	// fill(124, 252, 0);
-	if(start) startGame();
-	else {
-		fill(0, 0, 255);
-		textSize(40);
-		text("Press any key", 90, 200);
-		text("Or touch to start", 70, 245);
-	}
-	bar();
-	bottomBar();
-	// genPipes();
-	// bird.show();
-	// bird.update();
-	// showScore(score);
-	fill(255, 255, 255);
-	rect(449, 0, 70, 800);
-	// pipe();
+	// if(start) startGame();
+	// else {
+	// 	fill(0, 0, 255);
+	// 	textSize(40);
+	// 	text("Press any key", 90, 200);
+	// 	text("Or touch to start", 70, 245);
+	// }
+	darkMode();
 	if(charlie){ gif.show(); }
 	if(bird.dead) {
-		// console.log("DEAD");
 		if(charlie) {
 			gif.hide();
 			mlg.position(59, 200);
@@ -265,14 +296,14 @@ function draw() {
 		bird.heDead();
 		pv[0].show();
 		pv[1].show();
-		fill(255, 255, 255);
-		rect(449, 0, 70, 800);
-		bottomBar();
+		// fill(255, 255, 255);
+		// rect(449, 0, 70, 800);
+		// bottomBar();
 		youLose();
 		//? javascript function to wait 3000ms (3 seoncds) until it calls noLoop() so bird can fall
 		setTimeout(function() {
 			noLoop();
 			// console.log("NICE YOU LOST");
-		}, 1000);
+		}, 600);
 	}
 }

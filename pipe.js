@@ -5,7 +5,7 @@ class Pipe {
 		this.y = y;
 		this.w = w;
 		this.h = h;
-		this.xvel = 4.5;
+		this.xvel = 4.8;
 	}
 
 	update() {

@@ -20,16 +20,16 @@ class Bird {
 
 	fly() {
 		this.velocity += this.flap;
-		console.log(this.velocity);
+		// console.log(this.velocity);
 		// console.log(this.y);
 	}
 
 	show() {
-		image(this.img, this.x, this.y, width/24, height/24); //KOBE
+		image(this.img, this.x, this.y, width/21, height/21); 
 	}
 
 	heDead() {
-		this.y += 11;
+		this.y += 16;
 	}
 
 	anothaOne() {
