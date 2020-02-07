@@ -180,8 +180,8 @@ function youLose() {
 			fill(44, 40, 53);
 			rect(80, 85, 290, 115);
 			fill(255, 0, 0);
-			text("Gamer Over", 5, 115);
-			text("Charlie!", 55, 180);
+			text("Gamer Over", 85, 125);
+			text("Charlie!", 133, 190);
 		}
 		else {
 			fill(44, 40, 53);
