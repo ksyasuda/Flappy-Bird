@@ -5,6 +5,7 @@ let start = false;
 function setup() {	
     background(220);
     frameRate(30);
+	scale(0);
 	createCanvas(windowWidth-4, windowHeight-4);
 	genBird();
 	// let fs = fullscreen();
@@ -268,6 +269,7 @@ function bottomBar() {
 let charlie = true;
 
 function draw() {
+		noScroll();
 	noStroke();
 	fill(40, 44, 53);
 	rect(0, 0, windowWidth+30, windowHeight+30);
@@ -316,3 +318,12 @@ function draw() {
 document.ontouchmove = function(event) {
 	event.preventDefault();
 }
+
+function noScroll() {
+  window.scrollTo(0, 0);
+}
+
+// add listener to disable scroll
+window.addEventListener('scroll', noScroll);
+
+
