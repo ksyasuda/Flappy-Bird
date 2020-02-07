@@ -34,8 +34,9 @@ class Bird {
 	show() {
 		let w = width;
 		let h = height;
+		console.log(w);
 		if(this.scale) {
-			image(this.img, this.x, this.y, w/10, h/10);
+			image(this.img, this.x, this.y, w/4, h/4);
 		}
 		else image(this.img, this.x, this.y, w/21, h/21); 
 	}
