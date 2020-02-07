@@ -4,10 +4,11 @@ class Bird {
 		this.y = y;
 		this.img = img;
 		this.gravity = 1.7;
-		this.flap = -22;
+		this.flap = -24;
 		this.dead = false;
 		this.rounds_alive = 0;
 		this.velocity = 0;
+		this.scale = false;
 	}
 
 	update() {
@@ -24,12 +25,19 @@ class Bird {
 		// console.log(this.y);
 	}
 
+	scalee() {
+		this.scale = true;
+	}
+
 	show() {
+		if(this.scale) {
+			scale(1.05);
+		}
 		image(this.img, this.x, this.y, width/21, height/21); 
 	}
 
 	heDead() {
-		this.y += 16;
+		this.y += 30;
 	}
 
 	anothaOne() {

@@ -5,7 +5,7 @@ let start = false;
 function setup() {	
     background(220);
     frameRate(30);
-	createCanvas(windowWidth+80, windowHeight+80);
+	createCanvas(windowWidth-4, windowHeight-4);
 	genBird();
 	// let fs = fullscreen();
 	// if(!fs) {
@@ -26,9 +26,10 @@ function checkforInput() {
 }
 
 function windowResized() {
-	resizeCanvas(windowWidth+3, windowHeight+3);
+	resizeCanvas(windowWidth-3, windowHeight-3);
 	gifpos.x = 635;
-	gifpos.y = windowHeight/5.5;
+	gifpos.y = windowHeight/4;
+	gif.position(gifpos.x, gifpos.y);
 }
 
 function genBird() {
@@ -81,8 +82,8 @@ function genPipes() {
 	let h = floor(random(50, 375));
 	if(!bird.dead) {
 		let temp = new Pipe(imgtop, x, y, 63, h);
-		if(h < 85) y += 20;
-		let temp2 = new Pipe(img2, x, y+(h+95), 61, h+800);
+		if(h < 85) y += 12;
+		let temp2 = new Pipe(img2, x, y+(h+115), 61, windowHeight);
 		pv.push(temp);
 		pv.push(temp2);
 		pv[0].show();
@@ -96,8 +97,8 @@ function genPipes() {
 		// 	((bird.x >= pv[1].x && bird.x <= pv[1].x+55 && bird.y >= goal.y+100))) {
 		// 	bird.dead = true;
 		// }
-		if(bird.x+32 >= pv[0].x && bird.x+32 <= pv[0].x+pv[0].w+15 && bird.y+5 <= pv[0].h ||
-		   bird.x+32 >= pv[1].x && bird.x+32 <= pv[1].x+pv[1].w+20 && bird.y+32 >= pv[0].h+goal.h) {
+		if(bird.x+32 >= pv[0].x && bird.x+32 <= pv[0].x+pv[0].w+15 && bird.y+4 <= pv[0].h ||
+		   bird.x+32 >= pv[1].x && bird.x+32 <= pv[1].x+pv[1].w+20 && bird.y >= pv[0].h+goal.h) {
 				bird.dead = true;
 		}
 		else if(((bird.x >= goal.x && bird.x <= goal.x + goal.w) && (bird.y >= goal.y && bird.y <= goal.y + goal.h)) && need_check) {
@@ -215,8 +216,9 @@ function reset() {
 }
 
 function bar() {
-	fill(255, 255, 255);
+	// fill(255, 255, 255);
 	// fill(255, 0, 0);
+	fill(40, 44, 53);
 	rect(450, 0, 60, windowHeight);
 }
 
@@ -235,6 +237,7 @@ function touchStarted() {
 		start = true;
 		let fs = fullscreen();
 		if(!fs) fullscreen(true);
+		bird.scalee();
 		// start = true; 
 	}
 	if(!bird.dead) bird.fly();
@@ -252,8 +255,8 @@ function touchEnded() {
 
 function darkMode() {
 	fill(40, 44, 53);
-	rect(450, 0, windowWidth+120, windowHeight+120);
-	rect(0, windowHeight, windowWidth+120, 100);
+	rect(700, 0, windowWidth, windowHeight);
+	rect(0, windowHeight, windowWidth, 100);
 }
 
 function bottomBar() {
@@ -287,6 +290,7 @@ function draw() {
 	// }
 	darkMode();
 	if(charlie){ gif.show(); }
+	bar();
 	if(bird.dead) {
 		if(charlie) {
 			gif.hide();
