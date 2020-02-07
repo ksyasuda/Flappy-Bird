@@ -85,12 +85,14 @@ function genPipes() {
 	if(!bird.dead) {
 		let temp = new Pipe(imgtop, x, y, 63, h);
 		if(h < 85) y += 12;
-		let temp2 = new Pipe(img2, x, y+(h+115), 61, windowHeight);
+		let temp2 = new Pipe(img2, x, y+(h+105), 61, windowHeight);
 		pv.push(temp);
 		pv.push(temp2);
-		pv[0].show();
+		if(pv [0].x <= 450) {
+			pv[0].show();
+			pv[1].show();
+		}
 		pv[0].update();
-		pv[1].show();
 		pv[1].update();
 		let goal = new Goal(pv[0].x+60, pv[0].y+pv[0].h, 55, 99);
 		goal.show();
@@ -139,7 +141,7 @@ function showScore(score) {
 		score = "STOP PLS";
 	}
 	// tempx += 380;
-	if(needScale) tempx -= 100;
+	if(needScale) tempx -= 15;
 	text("Score: ", tempx, tempy);
 	text(score, tempx+150, tempy+2);
 }
@@ -179,6 +181,9 @@ function youLose() {
 			text("Charlie!", 55, 180);
 		}
 		else {
+			fill(44, 40, 53);
+			rect(40, 70, 360, 120);
+			fill(255, 0, 0);
 			text("Gamer Over", 85, 115);
 			text("Charlie!", 135, 180);
 		}
@@ -211,10 +216,10 @@ function reset() {
 	pv[0].x += 1000;
 	pv[1].x += 1000;
 	// redraww();
+	bird.dead = false;
 	delete bird;
 	// // bird = new Bird(440, 100, img);
 	// bird = new Bird(40, 100, img);
-	bird.dead = false;
 	score = 0;
 	if (charlie) {
 		gif.show();

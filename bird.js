@@ -3,7 +3,7 @@ class Bird {
 		this.x = x;
 		this.y = y;
 		this.img = img;
-		this.gravity = 1.7;
+		this.gravity = 1.5;
 		this.flap = -24;
 		this.dead = false;
 		this.rounds_alive = 0;
@@ -32,13 +32,12 @@ class Bird {
 	}
 
 	show() {
-		let w = width;
-		let h = height;
-		console.log(w);
+		let w = 34;
+		let h = 27;
 		if(this.scale) {
-			image(this.img, this.x, this.y, w/4, h/4);
+			image(this.img, this.x, this.y, w*2.7, h*2.7);
 		}
-		else image(this.img, this.x, this.y, w/21, h/21); 
+		else image(this.img, this.x, this.y, w, h); 
 	}
 
 	heDead() {
