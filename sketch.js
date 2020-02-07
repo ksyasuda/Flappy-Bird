@@ -307,3 +307,7 @@ function draw() {
 		}, 600);
 	}
 }
+
+document.ontouchmove = function(event) {
+	event.preventDefault();
+}
