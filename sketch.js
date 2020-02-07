@@ -232,8 +232,8 @@ let touch = {begin, end};
 
 function touchStarted() {
 	if(!start) { 
-		let fs = fullscreen();
-		if(!fs) fullscreen(true);
+		// let fs = fullscreen();
+		// if(!fs) fullscreen(true);
 		start = true; 
 	}
 	if(!bird.dead) bird.fly();
