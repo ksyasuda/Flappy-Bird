@@ -288,11 +288,11 @@ function darkMode() {
 	rect(0, windowHeight, windowWidth, 100);
 }
 
-function bottomBar() {
-	// fill(255, 255, 255);
-	fill(0);
-	rect(0, 577, windowWidth, 1000);
-}
+// function bottomBar() {
+// 	// fill(255, 255, 255);
+// 	fill(0);
+// 	rect(0, 577, windowWidth, 1000);
+// }
 
 let charlie = true;
 let reset_game_and_count = true;
