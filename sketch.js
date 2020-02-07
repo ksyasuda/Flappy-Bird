@@ -26,7 +26,7 @@ function checkforInput() {
 }
 
 function windowResized() {
-	resizeCanvas(windowWidth+80, windowHeight+80);
+	resizeCanvas(windowWidth+3, windowHeight+3);
 	gifpos.x = 635;
 	gifpos.y = windowHeight/5.5;
 }
@@ -82,7 +82,7 @@ function genPipes() {
 	if(!bird.dead) {
 		let temp = new Pipe(imgtop, x, y, 63, h);
 		if(h < 85) y += 20;
-		let temp2 = new Pipe(img2, x, y+(h+95), 61, h+400);
+		let temp2 = new Pipe(img2, x, y+(h+95), 61, h+800);
 		pv.push(temp);
 		pv.push(temp2);
 		pv[0].show();
@@ -232,9 +232,10 @@ let touch = {begin, end};
 
 function touchStarted() {
 	if(!start) { 
-		// let fs = fullscreen();
-		// if(!fs) fullscreen(true);
-		start = true; 
+		start = true;
+		let fs = fullscreen();
+		if(!fs) fullscreen(true);
+		// start = true; 
 	}
 	if(!bird.dead) bird.fly();
 	touch.begin.x = mouseX;
@@ -304,7 +305,7 @@ function draw() {
 		setTimeout(function() {
 			noLoop();
 			// console.log("NICE YOU LOST");
-		}, 600);
+		}, 500);
 	}
 }
 
