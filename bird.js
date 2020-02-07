@@ -31,7 +31,7 @@ class Bird {
 
 	show() {
 		if(this.scale) {
-			scale(1.05);
+			scale(2);
 		}
 		image(this.img, this.x, this.y, width/21, height/21); 
 	}
