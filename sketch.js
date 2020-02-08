@@ -2,6 +2,7 @@ let bird, pipe;
 let pv = [];
 let start = false;
 let needScale = false;
+let dev = true;  //? enables up arrow p and 1 to update score by 1 10 and 100
 
 function setup() {	
     background(220);
@@ -158,12 +159,27 @@ function keyPressed() {
 		if(!fs) fullscreen(true);
 		start = true; 
 	}
-	if(keyCode === 32 && !bird.dead) {
+	if(keyCode === 32 && !bird.dead) { //* space bar
 		bird.fly();
 	}
-	if(keyCode === 82) {
+	if(keyCode === 82) { //* r reset
 		reset();
 	}
+	if(dev === true) {
+		if(keyCode === 80) { //* p + 10 score
+			bird.rounds_alive += 10;
+			score += 10;
+		}
+		if(keyCode === UP_ARROW) { //* +1 score
+			bird.rounds_alive++;
+			score++;
+		}
+		if(keyCode === 49) { //* 1 key +100 score
+			bird.rounds_alive += 100;
+			score += 100;
+		}
+	}
+
 
 	// fill(255, -1550)
 	return false;
@@ -323,7 +339,7 @@ function draw() {
 		bird.heDead();
 		pv[0].show();
 		pv[1].show();
-		showScore();
+		showScore(score);
 		// fill(255, 255, 255);
 		// rect(449, 0, 70, 800);
 		// bottomBar();

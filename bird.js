@@ -16,6 +16,12 @@ class Bird {
 		if(this.velocity < -12) this.velocity = -12;
 		else if(this.velocity > 25) this.velcity = 25;
 		this.y += this.velocity;
+		if(this.y > windowHeight) {
+			bird.dead = true;
+		}
+		if(this.y < 0) {
+			this.y = 0;
+		}
 		//this.y += this.yspeed;
 	}
 
@@ -41,7 +47,7 @@ class Bird {
 	}
 
 	heDead() {
-		this.y += 55;
+		this.y += 85;
 	}
 
 	anothaOne() {
